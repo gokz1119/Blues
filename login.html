@@ -9,12 +9,18 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
     <!-- include the stylesheet file -->
     <link href="/style.css" rel="stylesheet" type="text/css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <div class="login">
-        <h1>Login</h1>
-        <form action="/auth" method="post">
+        <h1>
+            Welcome to <br><span>Blues</span>
+        </h1>
+        <form action="/home" method="post">
+            <!-- <div> -->
             <label for="username">
                 <!-- font awesome icon -->
                 <i class="fas fa-user"></i>
@@ -24,8 +30,10 @@
                 <i class="fas fa-lock"></i>
             </label>
             <input type="password" name="password" placeholder="Password" id="password" required>
-            <input type="submit" value="Login">
+            <!-- <input type="submit" value="Login"> -->
+            <button type="submit">Login</button>
         </form>
+        <!-- </div> -->
     </div>
 </body>
 
