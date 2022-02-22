@@ -46,7 +46,7 @@ app.post('/home', function (request, response) {
     // Ensure the input fields exists and are not empty
     if (username && password) {
         // Execute SQL query that'll select the account from the database based on the specified username and password
-        connection.query('SELECT * FROM accounts WHERE username = ? AND password = ?', [username, password], function (error, results, fields) {
+        connection.query('SELECT * FROM Authentication WHERE username = ? AND password = ?', [username, password], function (error, results, fields) {
             // If there is an issue with the query, output the error
             if (error) throw error;
             // If the account exists
@@ -59,8 +59,7 @@ app.post('/home', function (request, response) {
                 return response.redirect('/home');
             } else {
                 // response.send('Incorrect Username and/or Password!');
-                return response.sendFile('D:\\S5\\DBMS_Lab\\Miniproject\\nodelogin\\failure.html');
-
+                return response.sendFile(path.join(__dirname + '/failure.html'));
             }
             response.end();
         });
@@ -75,16 +74,11 @@ app.get('/home', function (request, response) {
     // If the user is loggedin
     if (request.session.loggedin) {
         // Output username
-
-        return response.sendFile('D:\\S5\\DBMS_Lab\\Miniproject\\nodelogin\\success.html')
-        // response.sendFile(path.join(__dirname + '\\success.html'));
-        // window.location.href = "file:///D:/S5/DBMS_Lab/Miniproject/nodelogin/success.html";
+        return response.sendFile(path.join(__dirname + '/success.html'));
         // response.send('Welcome back, ' + request.session.username + '!');
     } else {
         // Not logged in
-
-        return response.sendFile('D:\\S5\\DBMS_Lab\\Miniproject\\nodelogin\\failure.html');
-        // response.send('Please login to view this page!');
+        response.send('Please login to view this page!');
     }
     response.end();
 });
