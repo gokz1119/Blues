@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="successstyle.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>Welcome</title>
+</head>
+
+<body>
+    <div class="welcome-text">
+        <h1>Welcome back to <span>Blues!</span> </h1>
+        <div class="pop-list">
+            <div>
+                <h2>Popular Songs</h2>
+                <table>
+                    <thead>
+                        <td>#</td>
+                        <td>Title</td>
+                        <td>Artist</td>
+                        <td>Duration</td>
+                        <td>Language</td>
+                        <td>Genre</td>
+                    </thead>
+                    <tbody>
+                        <% songs.forEach(s=>{ -%>
+                            <tr>
+                                <td><img src="play.svg" alt="Play Song" class="play"></td>
+                                <td><span class="song_name">
+                                        <%= s.song_name %>
+                                    </span></td>
+                                <td>
+                                    <%= s.artist_name %>
+                                </td>
+                                <td>
+                                    <%= s.duration %>
+                                </td>
+                                <td>
+                                    <%= s.language %>
+                                </td>
+                                <td>
+                                    <%= s.genre %>
+                                </td>
+                            </tr>
+
+                            <% }); -%>
+                    </tbody>
+                </table>
+            </div>
+            <br>
+
+            <h2>Top Artists</h2>
+
+            <div>
+                <table>
+                    <thead>
+                        <td>#</td>
+                        <td>Name</td>
+                        <td>Albums</td>
+                        <td>Songs</td>
+                        <td>Followers</td>
+                    </thead>
+                    <tbody>
+                        <% artist.forEach(a=>{ -%>
+                            <tr>
+                                <td><img src="play.svg" alt="Play Song" class="play"></td>
+                                <td><span class="song_name">
+                                        <%= a.artist_name %>
+                                    </span></td>
+                                <td>
+                                    <%= a.no_of_albums %>
+                                </td>
+                                <td>
+                                    <%= a.no_of_songs %>
+                                </td>
+                                <td>
+                                    <%= a.no_of_followers %>
+                                </td>
+                                <td>
+                                    <%= a.genre %>
+                                </td>
+                            </tr>
+
+                            <% }); -%>
+                    </tbody>
+                </table>
+            </div>
+
+
+            <div>
+
+                <h2>Popular Albums</h2>
+
+                <table>
+                    <thead>
+                        <td>#</td>
+                        <td>Name</td>
+                        <td>Artist</td>
+                        <td>Songs</td>
+                    </thead>
+                    <tbody>
+                        <% albums.forEach(al=>{ -%>
+                            <tr>
+                                <td><img src="play.svg" alt="Play Song" class="play"></td>
+                                <td><span class="song_name">
+                                        <%= al.album_name %>
+                                    </span></td>
+                                <td>
+                                    <%= al.creator %>
+                                </td>
+                                <td>
+                                    <%= al.no_of_songs %>
+                                </td>
+                            </tr>
+
+                            <% }); -%>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>Blues' Best Playlists</h2>
+
+            <div>
+                <table>
+                    <thead>
+                        <td>#</td>
+                        <td>Title</td>
+                        <td>Duration</td>
+                        <td>Created By</td>
+                        <td>Followers</td>
+                    </thead>
+                    <tbody>
+                        <% playlists.forEach(p=>{ -%>
+                            <tr>
+                                <td><img src="play.svg" alt="Play Song" class="play"></td>
+                                <td><span class="song_name">
+                                        <%= p.playlist_name %>
+                                    </span></td>
+                                <td>
+                                    <%= p.duration %>
+                                </td>
+                                <td>
+                                    <%= p.name %>
+                                </td>
+                                <td>
+                                    <%= p.no_of_followers %>
+                                </td>
+                            </tr>
+
+                            <% }); -%>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <h3>Enjoy your <span>tunes :)</span></h3>
+        <img src="music_bird.svg" alt="Bird listening to music" class="music-bird">
+
+    </div>
+</body>
+
+</html>

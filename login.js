@@ -28,6 +28,8 @@ app.use(session({
     saveUninitialized: true
 }));
 app.use(express.json());
+
+app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'static')));
 
@@ -70,17 +72,36 @@ app.post('/home', function (request, response) {
 });
 
 // http://localhost:3000/home
-app.get('/home', function (request, response) {
+app.get('/home', async function (request, response) {
     // If the user is loggedin
     if (request.session.loggedin) {
         // Output username
-        return response.sendFile(path.join(__dirname + '/success.html'));
+
+        connection.query("SELECT * FROM Songs JOIN Artist ON Songs.artist=Artist.artist_id", function (error, songs, fields) {
+            connection.query("SELECT * FROM Artist", function (error, artists, fields) {
+                connection.query("SELECT * FROM Album", function (error, albums, fields) {
+                    connection.query("SELECT * FROM Playlists JOIN User ON Playlists.created_by=User.username", function (error, playlists, fields) {
+
+
+                        console.log(songs)
+                        console.log(artists)
+                        console.log(albums)
+                        console.log(playlists)
+                        return response.render('success', {
+                            songs: songs,
+                            artist: artists,
+                            albums: albums,
+                            playlists: playlists
+                        })
+                    })
+                })
+            })
+        })
         // response.send('Welcome back, ' + request.session.username + '!');
     } else {
         // Not logged in
         response.send('Please login to view this page!');
     }
-    response.end();
 });
 
 app.listen(3000);
