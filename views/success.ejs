@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="successstyle.css">
+    <link rel="icon" href="playbutton.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap" rel="stylesheet">
@@ -30,7 +31,7 @@
                     <tbody>
                         <% songs.forEach(s=>{ -%>
                             <tr>
-                                <td><img src="play.svg" alt="Play Song" class="play"></td>
+                                <td><img src="playbutton.svg" alt="Play Song" class="play"></td>
                                 <td><span class="song_name">
                                         <%= s.song_name %>
                                     </span></td>
@@ -68,7 +69,7 @@
                     <tbody>
                         <% artist.forEach(a=>{ -%>
                             <tr>
-                                <td><img src="play.svg" alt="Play Song" class="play"></td>
+                                <td><img src="playbutton.svg" alt="Play Song" class="play"></td>
                                 <td><span class="song_name">
                                         <%= a.artist_name %>
                                     </span></td>
@@ -106,7 +107,7 @@
                     <tbody>
                         <% albums.forEach(al=>{ -%>
                             <tr>
-                                <td><img src="play.svg" alt="Play Song" class="play"></td>
+                                <td><img src="playbutton.svg" alt="Play Song" class="play"></td>
                                 <td><span class="song_name">
                                         <%= al.album_name %>
                                     </span></td>
@@ -137,7 +138,7 @@
                     <tbody>
                         <% playlists.forEach(p=>{ -%>
                             <tr>
-                                <td><img src="play.svg" alt="Play Song" class="play"></td>
+                                <td><img src="playbutton.svg" alt="Play Song" class="play"></td>
                                 <td><span class="song_name">
                                         <%= p.playlist_name %>
                                     </span></td>

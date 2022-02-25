@@ -71,6 +71,77 @@ app.post('/home', function (request, response) {
     }
 });
 
+app.get('/signup', function (request, response) {
+    console.log(request.body)
+    return response.render('signup')
+    // Capture the input fields
+    let username = request.body.username;
+    let password = request.body.password;
+    let name = request.body.name;
+    let email = request.body.email;
+
+    // Ensure the input fields exists and are not empty
+    if (username && password && name && email) {
+        // Execute SQL query that'll select the account from the database based on the specified username and password
+        connection.query('INSERT INTO Authentication VALUES (?, ?)', [username, password], function (error1, results1, fields1) {
+            // If there is an issue with the query, output the error
+            if (error) throw error;
+            // If the account exists
+            console.log(results);
+            if (results.length > 0) {
+                // Authenticate the user
+                request.session.loggedin = true;
+                request.session.username = username;
+                // Redirect to home page
+                // return response.redirect('/home');
+            } else {
+                // response.send('Incorrect Username and/or Password!');
+                return response.sendFile(path.join(__dirname + '/failure.html'));
+            }
+            response.end();
+        });
+    } else {
+        response.send('Please enter Username and Password!');
+        response.end();
+    }
+});
+
+app.post('/signupsuccess', function (request, response) {
+    console.log(request.body)
+    // return response.render('signup')
+    // Capture the input fields
+    let username = request.body.username;
+    let password = request.body.password;
+    let name = request.body.name;
+    let email = request.body.email;
+
+    // Ensure the input fields exists and are not empty
+    if (username && password && name && email) {
+        // Execute SQL query that'll select the account from the database based on the specified username and password
+        connection.query('INSERT INTO Authentication VALUES (?, ?)', [username, password], function (error, results, fields) {
+            // If there is an issue with the query, output the error
+            if (error) throw error;
+            // If the account exists
+            console.log(results);
+            if (results) {
+                // Authenticate the user
+                request.session.loggedin = true;
+                request.session.username = username;
+                // Redirect to home page
+                return response.redirect('/home');
+            } else {
+                // response.send('Incorrect Username and/or Password!');
+                return response.sendFile(path.join(__dirname + '/failure.html'));
+            }
+            response.end();
+        });
+    } else {
+        response.send('Please enter Username and Password!');
+        response.end();
+    }
+});
+
+
 // http://localhost:3000/home
 app.get('/home', async function (request, response) {
     // If the user is loggedin
